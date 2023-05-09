@@ -1,8 +1,0 @@
-README.md
-setup.py
-solution.py
-solution.egg-info/PKG-INFO
-solution.egg-info/SOURCES.txt
-solution.egg-info/dependency_links.txt
-solution.egg-info/entry_points.txt
-solution.egg-info/top_level.txt
