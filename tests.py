@@ -1,3 +1,4 @@
+import os
 import unittest
 from solution import proc_file
 
@@ -6,12 +7,21 @@ SOLUTIONS = {
     "test2": ("[to get very]", "[by her sister]")
 }
 
+SHOULD_FAIL = {
+    "test3": ValueError,
+}
+
 
 class MyTestCase(unittest.TestCase):
-    def test_files(self):
+    def test_good_files(self):
         for fn, result in SOLUTIONS.items():
-            self.assertEqual(list(result), proc_file(f"{fn}.txt"))  # add assertion here
+            path = os.path.join("test_examples", f"{fn}.txt")
+            self.assertEqual(list(result), proc_file(path))
 
+    def test_bad_files(self):
+        for fn, error in SHOULD_FAIL.items():
+            path = os.path.join("test_examples", f"{fn}.txt")
+            self.assertRaises(error, lambda: proc_file(path))
 
 if __name__ == '__main__':
     unittest.main()
