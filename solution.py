@@ -19,7 +19,7 @@ def get_last_line(file_path: str) -> str:
         return file_path.readline().decode().strip()
 
 
-def proc_file(file_path: str) -> list:
+def process_file(file_path: str) -> list:
     num_lines = 0
     with open(file_path, 'r') as f:
         for _ in f:
@@ -59,8 +59,20 @@ def dirty_line_to_words(line: str) -> list:
 
 
 def main():
+    if len(sys.argv) != 1:
+        print("No file path provided")
+        return
+    elif len(sys.argv) > 2:
+        print("Too many arguments provided")
+        return
+
+    path = sys.argv[1]
+    if not os.path.exists(path):
+        print("File doesn't exist")
+        return
+
     try:
-        res = proc_file(sys.argv[1])
+        res = process_file(path)
     except ValueError as e:
         print(e)
     else:
